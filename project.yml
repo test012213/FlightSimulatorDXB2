@@ -1,0 +1,23 @@
+# project.yml  – SwiftUI iOS-15+ app
+name: FlightSimulator
+options:
+  bundleIdPrefix: com.aditya            # change if you want
+configs: [Release]
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: 15.0
+    PRODUCT_BUNDLE_IDENTIFIER: com.aditya.flightSimulator
+targets:
+  FlightSimulator:
+    type: application
+    platform: iOS
+    sources: [Sources]                  # your .swift live here
+    resources: [Resources]              # (optional) images, etc.
+    info:
+      path: Info.plist
+      properties:
+        UILaunchScreen: {}
+    settings:
+      base:
+        SWIFT_VERSION: 5.9
+        GENERATE_INFOPLIST_FILE: NO
