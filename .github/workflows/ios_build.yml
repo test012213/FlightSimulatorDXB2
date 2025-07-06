@@ -9,16 +9,21 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Checkout source code
+    - name: Checkout source
       uses: actions/checkout@v3
 
     - name: Set up Xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: '15.2.0'  # or 15.4.0
+        xcode-version: '15.2.0'   # any version listed in the runner is fine
 
     - name: Unzip .xcodeproj
-      run: unzip FlightSimulator.xcodeproj.zip -d FlightSimulator.xcodeproj
+      run: |
+        unzip -q FlightSimulator.xcodeproj.zip
+        if [ -d FlightSimulator.xcodeproj/FlightSimulator.xcodeproj ]; then
+          mv FlightSimulator.xcodeproj/FlightSimulator.xcodeproj/* FlightSimulator.xcodeproj/
+          rm -r FlightSimulator.xcodeproj/FlightSimulator.xcodeproj
+        fi
 
     - name: Make build script executable
       run: chmod +x ./build_ipa.sh
@@ -28,3 +33,6 @@ jobs:
 
     - name: Upload IPA artifact
       uses: actions/upload-artifact@v4
+      with:
+        name: FlightSimulatorDXB
+        path: build/*.ipa
