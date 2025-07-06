@@ -75,7 +75,8 @@ xcodebuild -project "${PROJECT_NAME}.xcodeproj" \
            archive \
            CODE_SIGN_IDENTITY="" \
            CODE_SIGNING_REQUIRED=NO \
-           CODE_SIGNING_ALLOWED=NO
+           CODE_SIGNING_ALLOWED=NO \
+           | tee xcode.log
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}❌ Error: Archive failed${NC}"
@@ -138,4 +139,4 @@ echo "3. Select your iPad device"
 echo "4. Drag and drop the FlightSimulatorDXB.ipa file to install"
 echo "5. Trust the developer certificate in Settings > General > Device Management"
 echo ""
-echo -e "${GREEN}Enjoy your realistic flight simulation experience at Dubai International Airport!${NC}" 
+echo -e "${GREEN}Enjoy your realistic flight simulation experience at Dubai International Airport!${NC}"
